@@ -17,7 +17,14 @@ define(['jquery'], function ($) {
 
             this.endTime = Date.now() + options.duration;
             this.options = options;
-            this.animation_(options.action, options.duration, dfd);
+
+            if (typeof options.action === 'function') {
+                this.animation_(options.action, options.duration, dfd);
+            } else {
+                options.action.initialize(this.element, this.options);
+                this.animation_(options.action.main, options.duration, dfd);
+            }
+
             return dfd.promise();
         },
         animation_: function (action, duration, dfd) {
