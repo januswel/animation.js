@@ -1,4 +1,4 @@
-define(function () {
+(function () {
     // utility functions
     var size = function (element, rect) {
             if (!rect) {
@@ -134,5 +134,15 @@ define(function () {
             }
         };
 
-    return Actions;
-});
+    if (typeof define === 'function' && define.amd) {
+        define(function () {
+            return Actions;
+        });
+    }
+
+    if (typeof window === 'object' && typeof window.document === 'object') {
+        if (Animation) {
+            Animation.Actions = Actions;
+        }
+    }
+})();

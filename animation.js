@@ -1,4 +1,4 @@
-define(['jquery'], function ($) {
+(function () {
     // browser support
     var requestAnimationFrame = window.requestAnimationFrame
         || window.webkitRequestAnimationFrame
@@ -41,5 +41,13 @@ define(['jquery'], function ($) {
         }
     };
 
-    return Animation;
-});
+    if (typeof define === 'function' && define.amd) {
+        define(['jquery'], function ($) {
+            return Animation;
+        });
+    }
+
+    if (typeof window === 'object' && typeof window.document === 'object') {
+        window.Animation = Animation;
+    }
+})();
