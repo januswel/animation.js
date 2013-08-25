@@ -1,4 +1,4 @@
-require(['jquery', '../../animation', '../../animation-actions'], function ($, Animation, Actions) {
+(function () {
     // utility functions
     var sigmoid = function (x, a) {
             return 1 / (1 + Math.exp(-a * x));
@@ -18,22 +18,22 @@ require(['jquery', '../../animation', '../../animation-actions'], function ($, A
         // in some browsers, offsetHeight is not set just after "ready"
         setTimeout(function () {
             var act1 = animation1.start({
-                    action: Actions.move,
+                    action: Animation.Actions.move,
                     duration: 2000,
                     destination: screenCenter
                 }).then(function () {
                     return animation1.start({
-                        action: Actions.disappear,
+                        action: Animation.Actions.disappear,
                         duration: 1000
                     });
                 }).then(function () {
                     return animation1.start({
-                        action: Actions.appear,
+                        action: Animation.Actions.appear,
                         duration: 1000
                     });
                 }),
                 act2 = animation2.start({
-                    action: Actions.blink,
+                    action: Animation.Actions.blink,
                     duration: 3000,
                     count: 3
                 }).then(function () {
@@ -45,7 +45,7 @@ require(['jquery', '../../animation', '../../animation-actions'], function ($, A
                     });
                 }).then(function () {
                     return animation2.start({
-                        action: Actions.move,
+                        action: Animation.Actions.move,
                         displacementFunction: easeInOut,
                         duration: 2000,
                         destination: screenCenter
@@ -54,7 +54,7 @@ require(['jquery', '../../animation', '../../animation-actions'], function ($, A
 
             $.when(act1, act2).then(function () {
                 return $.when(animation1.start({
-                    action: Actions.circleMotion,
+                    action: Animation.Actions.circleMotion,
                     duration: 1000,
                     radian: Math.PI,
                     center: {
@@ -62,7 +62,7 @@ require(['jquery', '../../animation', '../../animation-actions'], function ($, A
                         y: screenCenter.y - 100
                     }
                 }), animation2.start({
-                    action: Actions.circleMotion,
+                    action: Animation.Actions.circleMotion,
                     duration: 1000,
                     radian: Math.PI,
                     center: {
@@ -72,25 +72,25 @@ require(['jquery', '../../animation', '../../animation-actions'], function ($, A
                 }));
             }).then(function () {
                 animation1.start({
-                    action: Actions.circleMotion,
+                    action: Animation.Actions.circleMotion,
                     duration: 2000,
                     radian: 2 * Math.PI,
                     center: screenCenter
                 }).then(function () {
                     return animation1.start({
-                        action: Actions.scaling,
+                        action: Animation.Actions.scaling,
                         duration: 1000,
                         scale: 2
                     });
                 });
                 animation2.start({
-                    action: Actions.circleMotion,
+                    action: Animation.Actions.circleMotion,
                     duration: 2000,
                     radian: 2 * Math.PI,
                     center: screenCenter
                 }).then(function () {
                     return animation2.start({
-                        action: Actions.scaling,
+                        action: Animation.Actions.scaling,
                         duration: 2000,
                         scale: 0.5
                     });
@@ -98,4 +98,4 @@ require(['jquery', '../../animation', '../../animation-actions'], function ($, A
             });
         }, 0);
     });
-});
+})();

@@ -6,4 +6,5 @@ JavaScript animation modules
 demo
 ----
 
-http://januswel.github.io/animation.js/demo/index.html
+global object   | http://januswel.github.io/animation.js/demo/index.html
+with RequireJS  | http://januswel.github.io/animation.js/demo/requirejs.html
